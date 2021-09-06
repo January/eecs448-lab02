@@ -42,14 +42,14 @@ bool LinkedList<T>::search(T value) const
 	{
 		if(temp->getValue() == value)
 		{
-			return(true);
+			return(true); // If what's at the front is our value, success!
 		}
 		else
 		{
-			temp = temp->getNext();
+			temp = temp->getNext(); // Otherwise, keep going.
 		}
 	}
-	return(isFound);
+	return(isFound); // This is always false if true hasn't been returned already.
 }
 
 template <typename T>
@@ -107,11 +107,25 @@ bool LinkedList<T>::removeBack()
 	Node<T>* secondintoLast = nullptr;
 	bool isRemoved = false;
 
-	/** TODO
-		Fix this method
-	*/
+	if(!isEmpty()) // If the linked list is empty, you don't need to do anything.
+	{
+		secondintoLast = m_front; // Start at the front.
 
-	return(isRemoved);
+		while(secondintoLast->getNext()->getNext() != nullptr) // We need to stop at the end. If the next-next is nullptr, that means we're at the end.
+		{
+			secondintoLast = secondintoLast->getNext();
+		}
+
+		lastNode = secondintoLast->getNext(); // With the way we search using getNext(), we still end up at the second-to-last. So the last node is the next.
+		delete lastNode;
+
+		secondintoLast->setNext(nullptr); // We can't actually set lastNode itself as nullptr. That doesn't work. So we settle for this method.
+		m_size--;
+
+		return true;
+	}
+
+	return(isRemoved); // This will always be false if true hasn't been returned already.
 }
 
 template <typename T>
