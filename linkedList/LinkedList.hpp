@@ -1,6 +1,6 @@
 /**
-*	@author
-*	@date
+*	@author Drew Fink
+*	@date 2021-09-06
 *	@file LinkedList.hpp
 *	@brief Implementation file for templated LinkedList class
 */
